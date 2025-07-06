@@ -117,6 +117,8 @@ Tải file lên, bao gồm 2 file:
 - File bài tập (ví dụ: assignment.txt)
 - Khóa công khai của người nhận (receiver_public.pem)
 
+Sau khi tải lên xong thì nhấn `Gửi`
+
 ### 5. Nhận bài tập (Người nhận)
 Truy cập tab Người nhận 
 
@@ -124,6 +126,8 @@ Tải file lên, bao gồm 3 file:
 - File đã mã hóa (packet.json)
 - Khóa riêng của người nhận (receiver_private.pem)
 - Khóa công khai của người gửi (sender_public.pem)
+
+Sau khi tải lên xong thì nhấn `Nhận`
 
 ### 6. Phản hồi và Thông báo
  Nếu giải mã thành công: responses/ack.json sẽ được tạo, kèm nội dung phản hồi.
