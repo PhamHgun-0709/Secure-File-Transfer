@@ -1,14 +1,10 @@
 # Truyền file an toàn – Đề 6: Gửi bài tập chia làm nhiều phần
 
-## Mô tả đề tài
+## Giới thiệu
 
-Một giảng viên cần gửi file `assignment.txt` chứa bài tập lớn đến hệ thống chấm điểm. Để tối ưu truyền tải qua mạng băng thông hạn chế và đảm bảo an toàn, hệ thống yêu cầu:
+Đây là một hệ thống bảo mật cho quá trình truyền bài tập dạng file văn bản, trong đó nội dung file được chia nhỏ và mã hóa bằng DES để đảm bảo tính bảo mật. Danh tính của người gửi và người nhận được xác thực bằng chữ ký số RSA 1024-bit, đồng thời hệ thống sử dụng hàm băm SHA-512 để kiểm tra tính toàn vẹn của từng phần dữ liệu.
 
-- File được **chia thành 3 phần**
-- Mỗi phần **mã hóa bằng DES**
-- Metadata và nội dung được **ký số bằng RSA-1024 + SHA-512**
-- Kiểm tra tính toàn vẹn bằng **SHA-512**
-- Phản hồi về trạng thái nhận: **ACK hoặc NACK**
+Hệ thống mô phỏng theo mô hình thực tế khi giảng viên cần gửi bài tập đến hệ thống chấm điểm qua mạng có băng thông hạn chế, đảm bảo bí mật – toàn vẹn – xác thực trong toàn bộ quá trình truyền tải.
 
 ---
 
@@ -25,7 +21,7 @@ Một giảng viên cần gửi file `assignment.txt` chứa bài tập lớn đ
 ---
 
 ## Cấu trúc thư mục
-![image](https://github.com/user-attachments/assets/4deeca0e-334e-44d5-8ee3-aa54bbde04ee)
+![Cấu trúc thư mục](images/folder.png)
 
 ---
 
@@ -59,12 +55,77 @@ Nếu không hợp lệ: Gửi NACK, chỉ rõ lỗi (hash sai, chữ ký sai,..
 
 ---
 
-Giao diện ứng dụng
+## Giao diện ứng dụng
 
 Ứng dụng sử dụng Flask với giao diện hiện đại từ Bootstrap.
 
-Trang chính
+### Trang chính
 
-Người gửi
+![Home](images/home.png)
 
-Người nhận
+### Người gửi
+
+![Sender](images/sender.png)
+
+### Người nhận
+
+![receiver](images/receiver.png)
+
+---
+
+## Ví dụ phản hồi ACK / NACK
+
+### ACK
+
+![ACK](images/ack.png)
+
+### NACK
+
+![NACK](images/nack.png)
+
+---
+## Hướng dẫn sử dụng
+
+### 1. Cài đặt môi trường
+Yêu cầu: Python 3.10+
+
+Cài đặt thư viện cần thiết:
+
+```bash
+python -m pip install flask
+python -m pip install pycryptodome
+```
+
+### 2. Tạo khóa RSA cho người gửi và người nhận
+
+```bash
+python generate_keys.py
+```
+
+### 3. Chạy ứng dụng
+
+```bash
+python app.py
+```
+Truy cập trình duyệt tại: http://127.0.0.1:5000
+
+
+### 4. Gửi bài tập (Người gửi)
+Truy cập tab Người gửi 
+
+Tải file lên, bao gồm 2 file:
+- File bài tập (ví dụ: assignment.txt)
+- Khóa công khai của người nhận (receiver_public.pem)
+
+### 5. Nhận bài tập (Người nhận)
+Truy cập tab Người nhận 
+
+Tải file lên, bao gồm 3 file: 
+- File đã mã hóa (packet.json)
+- Khóa riêng của người nhận (receiver_private.pem)
+- Khóa công khai của người gửi (sender_public.pem)
+
+### 6. Phản hồi và Thông báo
+ Nếu giải mã thành công: responses/ack.json sẽ được tạo, kèm nội dung phản hồi.
+
+ Nếu phát hiện lỗi: responses/nack.json sẽ ghi rõ nguyên nhân (sai chữ ký, hash mismatch, khóa không hợp lệ...).
