@@ -59,15 +59,15 @@ Nếu không hợp lệ: Gửi NACK, chỉ rõ lỗi (hash sai, chữ ký sai,..
 
 Ứng dụng sử dụng Flask với giao diện hiện đại từ Bootstrap.
 
-### Trang chính
+### 1. Trang chính
 
 ![Home](images/home.png)
 
-### Người gửi
+### 2. Người gửi
 
 ![Sender](images/sender.png)
 
-### Người nhận
+### 3. Người nhận
 
 ![receiver](images/receiver.png)
 
@@ -75,11 +75,11 @@ Nếu không hợp lệ: Gửi NACK, chỉ rõ lỗi (hash sai, chữ ký sai,..
 
 ## Ví dụ phản hồi ACK / NACK
 
-### ACK
+### 1. ACK
 
 ![ACK](images/ack.png)
 
-### NACK
+### 2. NACK
 
 ![NACK](images/nack.png)
 
