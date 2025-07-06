@@ -134,3 +134,18 @@ python app.py
 ### 2. NACK
 
 ![NACK](images/nack.png)
+
+---
+
+## Thành viên thực hiện
+
+Trường: Đại học Đại Nam
+
+Lớp: Công nghệ thông tin 16-04
+
+Nhóm: Nhóm 3
+
+Danh sách thành viên:
+- Nguyễn Trọng Đàn
+- Nguyễn Đức Anh
+- Phạm Thành Hưng
